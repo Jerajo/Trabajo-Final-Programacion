@@ -30,6 +30,23 @@ SELECT id_producto, nombre, precio, stock, fecha_registro
 - Instalar visual studio 2022 - comunnity edition
 - Tener instalado .NET 8 runtime environmment
 - Tener instalado git para windos
+
+```shell
+# Verificar que git esta instalado
+git version
+
+# Ir a la carpeta donde quierar tener el proyecto
+cd C:\Users\<usuario.Windows>\source\repos
+
+# clonar el repositorio
+git clone https://github.com/Jerajo/Trabajo-Final-Programacion.git
+
+# Pasa guardar los cambios
+git add .
+git commit -m "mensaje del commit"
+git push
+```
+
 - Tener instalados postgreSql y pgAdmin
 - Ejecutar script para crear base de datos
 - Validar la conección a la base de datos

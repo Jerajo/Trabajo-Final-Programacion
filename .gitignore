@@ -1,16 +1,28 @@
-﻿# Default ignored files
-/shelf/
-/workspace.xml
-# Rider ignored files
-/contentModel.xml
-/modules.xml
-/projectSettingsUpdater.xml
-/.idea.Trabajo-Final-Programacion.iml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+﻿# proyectos de otros repos
+Obi.Frontend
+Obi.AcceptanceTests
+
+# specflow
+*.feature.cs
+
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
 # Build results
 [Dd]ebug/
@@ -28,8 +40,24 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
+# Visual Studio 2015
+.vs/
+Log/
 *.log
-*.tmp
-*.temp
-*.cache
-*.bak
+test_results/
+test-results/
+Obi.Backend/gitversion.txt
+allure-results/
+
+packages/
+*.local
+.env
+coverage.json
+lcov.info
+opencover.xml
+run_coverlet.sh
+coverage.info
+
+.sonarqube/
+coverage/
+node_modules/

@@ -13,9 +13,9 @@
 /dataSources.local.xml
 
 # Objetos del proyecto que no se deben subir
-/bin/
-/build/
-/obj/
+**/bin
+**/build
+**/obj
 
 *.log
 *.tmp

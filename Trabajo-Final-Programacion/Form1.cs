@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,7 +63,7 @@ namespace Trabajo_Final_Programacion
             {
                 await using var conn = new NpgsqlConnection(connectionString);
                 await conn.OpenAsync();
-                Console.WriteLine("Conectado a la base de datos...");
+                Debug.WriteLine("Conectado a la base de datos...");
                 await using var cmd = new NpgsqlCommand("INSERT INTO inventario.productos(nombre, precio, stock, fecha_registro) VALUES (@nombre, @precio, @stock, @fecha_registro);", conn)
                 {
                     Parameters =
@@ -74,11 +75,11 @@ namespace Trabajo_Final_Programacion
                     }
                 };
                 await cmd.ExecuteNonQueryAsync();
-                Console.WriteLine("Producto insertado: {0}", producto.Name);
+                Debug.WriteLine("Producto insertado: {0}", producto.Name);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: {0}", ex.Message);
+                Debug.WriteLine("Error: {0}", ex.Message);
             }
         }
     }

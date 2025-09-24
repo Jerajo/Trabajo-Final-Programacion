@@ -11,3 +11,14 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Objetos del proyecto que no se deben subir
+/bin/
+/build/
+/obj/
+
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak

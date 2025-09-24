@@ -29,22 +29,29 @@ SELECT id_producto, nombre, precio, stock, fecha_registro
 
 - Instalar visual studio 2022 - comunnity edition
 - Tener instalado .NET 8 runtime environmment
+
+```shell
+# Verificar que net8 esta instalado
+$> dotnet --version
+8.0.302
+```
+
 - Tener instalado git para windos
 
 ```shell
 # Verificar que git esta instalado
-git version
+$> git version
 
 # Ir a la carpeta donde quierar tener el proyecto
-cd C:\Users\<usuario.Windows>\source\repos
+$> cd C:\Users\<usuario.Windows>\source\repos
 
 # clonar el repositorio
-git clone https://github.com/Jerajo/Trabajo-Final-Programacion.git
+$> git clone https://github.com/Jerajo/Trabajo-Final-Programacion.git
 
 # Pasa guardar los cambios
-git add .
-git commit -m "mensaje del commit"
-git push
+$> git add .
+$> git commit -m "mensaje del commit"
+$> git push
 ```
 
 - Tener instalados postgreSql y pgAdmin

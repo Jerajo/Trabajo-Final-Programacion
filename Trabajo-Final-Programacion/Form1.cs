@@ -14,7 +14,7 @@ namespace Trabajo_Final_Programacion
 {
     public partial class Form1 : Form
     {
-        string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=admin.;Database=bdinventario";
+        string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=bdinventario";
         public Form1()
         {
             InitializeComponent();

@@ -45,6 +45,7 @@
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
             SuspendLayout();
             // 
@@ -234,12 +235,24 @@
             Column5.ReadOnly = true;
             Column5.Width = 125;
             // 
+            // button1
+            // 
+            button1.Location = new Point(400, 86);
+            button1.Name = "button1";
+            button1.Size = new Size(173, 29);
+            button1.TabIndex = 13;
+            button1.Text = "Limpiar Formulario";
+            button1.UseVisualStyleBackColor = true;
+            button1.UseWaitCursor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
             ClientSize = new Size(963, 630);
+            Controls.Add(button1);
             Controls.Add(dgvProducto);
             Controls.Add(txtStock);
             Controls.Add(txtPrecio);
@@ -281,6 +294,7 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
+        private Button button1;
     }
 }
 

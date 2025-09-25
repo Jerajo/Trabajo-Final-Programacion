@@ -35,7 +35,7 @@ namespace Trabajo_Final_Programacion
             ReiniciarFormulario();
             GetProductos();
         }
-        
+
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             Producto producto = GetProducto();
@@ -44,10 +44,16 @@ namespace Trabajo_Final_Programacion
             ReiniciarFormulario();
             GetProductos();
         }
-        
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Producto producto = GetProducto();
+            if (producto.Id == 0)
+            {
+                Debug.WriteLine("Se intento eliminar sin seleccionar un producto...");
+                return;
+            }
+            
             EliminarProducto(producto);
             ReiniciarFormulario();
             GetProductos();
@@ -59,14 +65,15 @@ namespace Trabajo_Final_Programacion
             {
                 Id = string.IsNullOrWhiteSpace(txtID.Text) ? 0 : int.Parse(txtID.Text),
                 Name = TxtNombre.Text,
-                Precio = double.Parse(txtPrecio.Text),
-                Stock = int.Parse(txtStock.Text),
+                Precio = string.IsNullOrWhiteSpace(txtPrecio.Text) ? 0 : double.Parse(txtPrecio.Text),
+                Stock = string.IsNullOrWhiteSpace(txtPrecio.Text) ? 0 : int.Parse(txtStock.Text),
                 FechaRegistro = DateTime.Today
             };
         }
 
         private void ReiniciarFormulario()
         {
+            txtID.Clear();
             TxtNombre.Clear();
             txtPrecio.Clear();
             txtStock.Clear();
@@ -131,7 +138,7 @@ namespace Trabajo_Final_Programacion
                 Debug.WriteLine("Error: {0}", ex.Message);
             }
         }
-        
+
         private async Task ActualizarProducto(Producto producto)
         {
             try
@@ -157,7 +164,7 @@ namespace Trabajo_Final_Programacion
                 Debug.WriteLine("Error: {0}", ex.Message);
             }
         }
-        
+
         private async Task EliminarProducto(Producto producto)
         {
             try
@@ -185,12 +192,17 @@ namespace Trabajo_Final_Programacion
         {
             if (dgvProducto.Rows.Count < 2)
                 return;
-            
+
             DataGridViewRow row = dgvProducto.Rows[e.RowIndex];
             txtID.Text = row.Cells[0].Value?.ToString();
             TxtNombre.Text = row.Cells[1].Value?.ToString();
             txtPrecio.Text = row.Cells[2].Value?.ToString();
             txtStock.Text = row.Cells[3].Value?.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReiniciarFormulario();
         }
     }
 }

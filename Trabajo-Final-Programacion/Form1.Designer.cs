@@ -45,7 +45,6 @@
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducto).BeginInit();
             SuspendLayout();
             // 
@@ -53,10 +52,9 @@
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblId.Location = new Point(89, 48);
-            lblId.Margin = new Padding(5, 0, 5, 0);
+            lblId.Location = new Point(55, 30);
             lblId.Name = "lblId";
-            lblId.Size = new Size(36, 29);
+            lblId.Size = new Size(22, 18);
             lblId.TabIndex = 0;
             lblId.Text = "ID";
             lblId.UseWaitCursor = true;
@@ -65,10 +63,9 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNombre.Location = new Point(57, 106);
-            lblNombre.Margin = new Padding(5, 0, 5, 0);
+            lblNombre.Location = new Point(35, 66);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(101, 29);
+            lblNombre.Size = new Size(62, 18);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre";
             lblNombre.UseWaitCursor = true;
@@ -77,10 +74,9 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecio.Location = new Point(60, 163);
-            lblPrecio.Margin = new Padding(5, 0, 5, 0);
+            lblPrecio.Location = new Point(37, 102);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(83, 29);
+            lblPrecio.Size = new Size(51, 18);
             lblPrecio.TabIndex = 2;
             lblPrecio.Text = "Precio";
             lblPrecio.UseWaitCursor = true;
@@ -89,10 +85,9 @@
             // 
             lblStock.AutoSize = true;
             lblStock.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStock.Location = new Point(68, 218);
-            lblStock.Margin = new Padding(5, 0, 5, 0);
+            lblStock.Location = new Point(42, 136);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(73, 29);
+            lblStock.Size = new Size(47, 18);
             lblStock.TabIndex = 3;
             lblStock.Text = "Stock";
             lblStock.UseWaitCursor = true;
@@ -100,10 +95,10 @@
             // btnCrear
             // 
             btnCrear.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCrear.Location = new Point(445, 45);
-            btnCrear.Margin = new Padding(5, 6, 5, 6);
+            btnCrear.Location = new Point(274, 28);
+            btnCrear.Margin = new Padding(3, 4, 3, 4);
             btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(146, 54);
+            btnCrear.Size = new Size(90, 34);
             btnCrear.TabIndex = 4;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
@@ -113,10 +108,10 @@
             // btnActualizar
             // 
             btnActualizar.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnActualizar.Location = new Point(445, 230);
-            btnActualizar.Margin = new Padding(5, 6, 5, 6);
+            btnActualizar.Location = new Point(274, 144);
+            btnActualizar.Margin = new Padding(3, 4, 3, 4);
             btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(146, 54);
+            btnActualizar.Size = new Size(90, 34);
             btnActualizar.TabIndex = 5;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = true;
@@ -126,10 +121,10 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEliminar.Location = new Point(445, 138);
-            btnEliminar.Margin = new Padding(5, 6, 5, 6);
+            btnEliminar.Location = new Point(274, 86);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(146, 54);
+            btnEliminar.Size = new Size(90, 34);
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -139,113 +134,112 @@
             // txtID
             // 
             txtID.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtID.Location = new Point(172, 45);
-            txtID.Margin = new Padding(5, 6, 5, 6);
+            txtID.Location = new Point(106, 28);
+            txtID.Margin = new Padding(3, 4, 3, 4);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
             txtID.RightToLeft = RightToLeft.No;
-            txtID.Size = new Size(160, 35);
+            txtID.Size = new Size(100, 24);
             txtID.TabIndex = 8;
             txtID.UseWaitCursor = true;
-            txtID.TextChanged += txtID_TextChanged;
             // 
             // TxtNombre
             // 
             TxtNombre.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TxtNombre.Location = new Point(172, 99);
-            TxtNombre.Margin = new Padding(5, 6, 5, 6);
+            TxtNombre.Location = new Point(106, 62);
+            TxtNombre.Margin = new Padding(3, 4, 3, 4);
             TxtNombre.Name = "TxtNombre";
-            TxtNombre.Size = new Size(160, 35);
+            TxtNombre.Size = new Size(100, 24);
             TxtNombre.TabIndex = 9;
             TxtNombre.UseWaitCursor = true;
             // 
             // txtPrecio
             // 
             txtPrecio.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPrecio.Location = new Point(172, 157);
-            txtPrecio.Margin = new Padding(5, 6, 5, 6);
+            txtPrecio.Location = new Point(106, 98);
+            txtPrecio.Margin = new Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(160, 35);
+            txtPrecio.Size = new Size(100, 24);
             txtPrecio.TabIndex = 10;
             txtPrecio.UseWaitCursor = true;
             // 
             // txtStock
             // 
             txtStock.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStock.Location = new Point(172, 211);
-            txtStock.Margin = new Padding(5, 6, 5, 6);
+            txtStock.Location = new Point(106, 132);
+            txtStock.Margin = new Padding(3, 4, 3, 4);
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(160, 35);
+            txtStock.Size = new Size(100, 24);
             txtStock.TabIndex = 11;
             txtStock.UseWaitCursor = true;
             // 
             // dgvProducto
             // 
+            dgvProducto.AllowUserToAddRows = false;
+            dgvProducto.AllowUserToDeleteRows = false;
             dgvProducto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducto.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dgvProducto.Location = new Point(65, 355);
-            dgvProducto.Margin = new Padding(5, 6, 5, 6);
+            dgvProducto.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvProducto.Location = new Point(40, 222);
+            dgvProducto.Margin = new Padding(3, 4, 3, 4);
+            dgvProducto.MultiSelect = false;
             dgvProducto.Name = "dgvProducto";
+            dgvProducto.ReadOnly = true;
             dgvProducto.RowHeadersWidth = 51;
             dgvProducto.RowTemplate.Height = 24;
-            dgvProducto.Size = new Size(1456, 390);
+            dgvProducto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducto.Size = new Size(896, 244);
             dgvProducto.TabIndex = 12;
+            dgvProducto.TabStop = false;
             dgvProducto.UseWaitCursor = true;
-            dgvProducto.CellContentClick += dgvProducto_CellContentClick;
+            dgvProducto.RowEnter += registro_seleccionado;
             // 
             // Column1
             // 
             Column1.HeaderText = "id_producto";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
+            Column1.ReadOnly = true;
             Column1.Width = 125;
             // 
             // Column2
             // 
-            Column2.HeaderText = "Nombre";
+            Column2.HeaderText = "nombre";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
+            Column2.ReadOnly = true;
             Column2.Width = 125;
             // 
             // Column3
             // 
-            Column3.HeaderText = "Precio";
+            Column3.HeaderText = "precio";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
+            Column3.ReadOnly = true;
             Column3.Width = 125;
             // 
             // Column4
             // 
-            Column4.HeaderText = "Stock";
+            Column4.HeaderText = "stock";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
+            Column4.ReadOnly = true;
             Column4.Width = 125;
             // 
             // Column5
             // 
-            Column5.HeaderText = "Fecha_registro";
+            Column5.HeaderText = "fecha_registro";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
+            Column5.ReadOnly = true;
             Column5.Width = 125;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(665, 48);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 54);
-            button1.TabIndex = 13;
-            button1.Text = "insertar";
-            button1.UseVisualStyleBackColor = true;
-            button1.UseWaitCursor = true;
-            button1.Click += button1_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
-            ClientSize = new Size(1565, 1008);
-            Controls.Add(button1);
+            ClientSize = new Size(963, 630);
             Controls.Add(dgvProducto);
             Controls.Add(txtStock);
             Controls.Add(txtPrecio);
@@ -258,7 +252,7 @@
             Controls.Add(lblPrecio);
             Controls.Add(lblNombre);
             Controls.Add(lblId);
-            Margin = new Padding(5, 6, 5, 6);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             UseWaitCursor = true;
@@ -282,12 +276,11 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.DataGridView dgvProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private Button button1;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
     }
 }
 

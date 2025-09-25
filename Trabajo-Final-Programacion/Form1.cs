@@ -14,15 +14,17 @@ namespace Trabajo_Final_Programacion
 {
     public partial class Form1 : Form
     {
-        string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=bdinventario";
+        string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=0123.;Database=postgres";
         public Form1()
         {
             InitializeComponent();
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
+            Debug.WriteLine("Formulario a cargando los datos de la DB...");
+            GetProductos();
+            Debug.WriteLine("Formulario a cargado...");
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -31,12 +33,31 @@ namespace Trabajo_Final_Programacion
             InsertarProducto(producto);
             dgvProducto.Rows.Add(producto.Id, producto.Name, producto.Stock, producto.Stock, producto);
             ReiniciarFormulario();
+            GetProductos();
+        }
+        
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            Producto producto = GetProducto();
+            ActualizarProducto(producto);
+            dgvProducto.Rows.Add(producto.Id, producto.Name, producto.Stock, producto.Stock, producto);
+            ReiniciarFormulario();
+            GetProductos();
+        }
+        
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Producto producto = GetProducto();
+            EliminarProducto(producto);
+            ReiniciarFormulario();
+            GetProductos();
         }
 
         private Producto GetProducto()
         {
             return new Producto
             {
+                Id = string.IsNullOrWhiteSpace(txtID.Text) ? 0 : int.Parse(txtID.Text),
                 Name = TxtNombre.Text,
                 Precio = double.Parse(txtPrecio.Text),
                 Stock = int.Parse(txtStock.Text),
@@ -52,9 +73,37 @@ namespace Trabajo_Final_Programacion
             TxtNombre.Focus();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private async Task GetProductos()
         {
-            dgvProducto.Rows.RemoveAt(dgvProducto.CurrentRow.Index);
+            try
+            {
+                await using var conn = new NpgsqlConnection(connectionString);
+                await conn.OpenAsync();
+                Debug.WriteLine("Conectado a la base de datos...");
+                await using var cmd = new NpgsqlCommand("SELECT * FROM inventario.productos", conn);
+                await using var reader = await cmd.ExecuteReaderAsync();
+                dgvProducto.Rows.Clear();
+
+                while (await reader.ReadAsync())
+                {
+                    Producto producto = new Producto
+                    {
+                        Id = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Precio = reader.GetDouble(2),
+                        Stock = reader.GetInt32(3),
+                        FechaRegistro = reader.GetDateTime(4)
+                    };
+                    Debug.WriteLine("producto de la db: {0}", producto);
+                    dgvProducto.Rows.Add(producto.Id, producto.Name, producto.Precio, producto.Stock,
+                        producto.FechaRegistro);
+                }
+                Debug.WriteLine("Termino de leer la base de datos...");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: {0}", ex.Message);
+            }
         }
 
         private async Task InsertarProducto(Producto producto)
@@ -82,135 +131,66 @@ namespace Trabajo_Final_Programacion
                 Debug.WriteLine("Error: {0}", ex.Message);
             }
         }
-        ///actualisar a la base de datos 
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            string connString = "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=bdinventario";
-
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
-
-                foreach (DataGridViewRow row in dgvProducto.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    string nombre = row.Cells[1].Value?.ToString() ?? "";
-                    decimal precio = Convert.ToDecimal(row.Cells[2].Value ?? 0);
-                    int stock = Convert.ToInt32(row.Cells[3].Value ?? 0);
-
-                    // UPDATE por nombre
-                    string queryUpdate = @"
-            UPDATE inventario.productos
-            SET precio = @precio, stock = @stock
-            WHERE nombre = @nombre";
-
-                    using (var cmd = new NpgsqlCommand(queryUpdate, conn))
-                    {
-                        cmd.Parameters.AddWithValue("precio", precio);
-                        cmd.Parameters.AddWithValue("stock", stock);
-                        cmd.Parameters.AddWithValue("nombre", nombre);
-
-                        int filasAfectadas = cmd.ExecuteNonQuery();
-
-                        // Si no existe el nombre, puedes insertar
-                        if (filasAfectadas == 0)
-                        {
-                            string queryInsert = @"
-                    INSERT INTO inventario.productos (nombre, precio, stock)
-                    VALUES (@nombre, @precio, @stock)";
-
-                            using (var cmdInsert = new NpgsqlCommand(queryInsert, conn))
-                            {
-                                cmdInsert.Parameters.AddWithValue("nombre", nombre);
-                                cmdInsert.Parameters.AddWithValue("precio", precio);
-                                cmdInsert.Parameters.AddWithValue("stock", stock);
-                                cmdInsert.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-
-                MessageBox.Show("Datos actualizados correctamente en PostgreSQL (por nombre)");
-            }
-        }
-
-        private void dgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        ///agregar a la base de datos 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string connString = "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=bdinventario";
-
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
-
-                foreach (DataGridViewRow row in dgvProducto.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    object idValue = row.Cells[0].Value;
-                    string nombre = row.Cells[1].Value?.ToString() ?? "";
-                    decimal precio = Convert.ToDecimal(row.Cells[2].Value ?? 0);
-                    int stock = Convert.ToInt32(row.Cells[3].Value ?? 0);
-
-                    // Si existe ID válido -> UPDATE
-                    if (idValue != null && idValue != DBNull.Value && Convert.ToInt32(idValue) > 0)
-                    {
-                        int idProd = Convert.ToInt32(idValue);
-
-                        string queryUpdate = @"
-                        UPDATE inventario.productos
-                        SET nombre = @nombre, precio = @precio, stock = @stock
-                        WHERE id_producto = @id";
-
-                        using (var cmd = new NpgsqlCommand(queryUpdate, conn))
-                        {
-                            cmd.Parameters.AddWithValue("nombre", nombre);
-                            cmd.Parameters.AddWithValue("precio", precio);
-                            cmd.Parameters.AddWithValue("stock", stock);
-                            cmd.Parameters.AddWithValue("id", idProd);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    else // Si no hay ID válido -> INSERT
-                    {
-                        string queryInsert = @"
-                    INSERT INTO inventario.productos (nombre, precio, stock)
-                    VALUES (@nombre, @precio, @stock)
-                    RETURNING id_producto";
-
-                        using (var cmd = new NpgsqlCommand(queryInsert, conn))
-                        {
-                            cmd.Parameters.AddWithValue("nombre", nombre);
-                            cmd.Parameters.AddWithValue("precio", precio);
-                            cmd.Parameters.AddWithValue("stock", stock);
-
-                            int newId = (int)cmd.ExecuteScalar();
-                            row.Cells[0].Value = newId; // Asigna el ID al DataGridView
-                        }
-                    }
-                }
-
-                MessageBox.Show("Datos guardados correctamente en PostgreSQL");
-            }
-        }
-
         
-        private void txtID_TextChanged(object sender, EventArgs e)
+        private async Task ActualizarProducto(Producto producto)
         {
-
+            try
+            {
+                await using var conn = new NpgsqlConnection(connectionString);
+                await conn.OpenAsync();
+                Debug.WriteLine("Conectado a la base de datos...");
+                await using var cmd = new NpgsqlCommand("UPDATE inventario.productos SET nombre = @nombre, precio = @precio, stock = @stock WHERE id_producto = @id;", conn)
+                {
+                    Parameters =
+                    {
+                        new("id", producto.Id),
+                        new("nombre", producto.Name),
+                        new("precio", producto.Precio),
+                        new("stock", producto.Stock),
+                    }
+                };
+                await cmd.ExecuteNonQueryAsync();
+                Debug.WriteLine("Producto actualizado: {0}", producto.Name);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: {0}", ex.Message);
+            }
+        }
+        
+        private async Task EliminarProducto(Producto producto)
+        {
+            try
+            {
+                await using var conn = new NpgsqlConnection(connectionString);
+                await conn.OpenAsync();
+                Debug.WriteLine("Conectado a la base de datos...");
+                await using var cmd = new NpgsqlCommand("DELETE FROM inventario.productos WHERE id_producto = @id;", conn)
+                {
+                    Parameters =
+                    {
+                        new("id", producto.Id),
+                    }
+                };
+                await cmd.ExecuteNonQueryAsync();
+                Debug.WriteLine("Producto eliminado: {0}", producto.Name);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: {0}", ex.Message);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void registro_seleccionado(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (dgvProducto.Rows.Count < 2)
+                return;
+            
+            DataGridViewRow row = dgvProducto.Rows[e.RowIndex];
+            txtID.Text = row.Cells[0].Value?.ToString();
+            TxtNombre.Text = row.Cells[1].Value?.ToString();
+            txtPrecio.Text = row.Cells[2].Value?.ToString();
+            txtStock.Text = row.Cells[3].Value?.ToString();
         }
     }
 }
